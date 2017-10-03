@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,12 +21,12 @@ import espl.employeeSafety.Service.DesignationService;
 public class DesignationController {
 	@Autowired
 	private DesignationService designationService;
-
-	@RequestMapping(method=RequestMethod.GET)
+	@PreAuthorize("hasAnyRole('ADMIN')")
+	@RequestMapping(value="/get",method=RequestMethod.GET)
 	public ResponseEntity<List<Designation>> getAllDesignations(){
 		return new ResponseEntity<List<Designation>>(designationService.getAllDesignations(),HttpStatus.OK);
 	}
-
+	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<Designation> getDesignationById(@PathVariable("id") int id) {
 		return new ResponseEntity<Designation>(designationService.getDesignationById(id), HttpStatus.OK);

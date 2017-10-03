@@ -39,7 +39,7 @@ public class UserController {
 
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<User> updateUser(@PathVariable("id") int id, @RequestBody User user) {
-		user.setId(id);
+		user.setId(id);;
 		return new ResponseEntity<User>(userService.updateUser(id, user), HttpStatus.OK); 
 	}
 
