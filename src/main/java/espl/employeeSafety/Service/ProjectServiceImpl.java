@@ -2,6 +2,8 @@ package espl.employeeSafety.Service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import espl.employeeSafety.Entity.Project;
@@ -16,8 +18,8 @@ public class ProjectServiceImpl implements ProjectService {
 	 * @see espl.employeeSafety.Service.ProjectService#getAllProjects()
 	 */
 	@Override
-	public List<Project> getAllProjects(){
-		return projectRepository.findAll();
+	public Page<Project> getAllProjects(Pageable pageable){
+		return projectRepository.findAll(pageable);
 	}
 
 	/* (non-Javadoc)
@@ -56,4 +58,6 @@ public class ProjectServiceImpl implements ProjectService {
 	public void deleteProject(int id) {
 		projectRepository.delete(id);
 	}
+
+	
 }

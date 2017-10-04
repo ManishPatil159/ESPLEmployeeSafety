@@ -2,6 +2,9 @@ package espl.employeeSafety.Service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import espl.employeeSafety.Entity.Designation;
 
 public interface DesignationService {
@@ -9,7 +12,7 @@ public interface DesignationService {
 	/* (non-Javadoc)
 	 * @see espl.employeeSafety.Service.DesignationService#getAllDesignations()
 	 */
-	public abstract List<Designation> getAllDesignations();
+	public abstract Page<Designation> getAllDesignations(Pageable pageable);
 
 	/* (non-Javadoc)
 	 * @see espl.employeeSafety.Service.DesignationService#getDesignationById(int)

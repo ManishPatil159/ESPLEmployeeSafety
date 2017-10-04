@@ -3,6 +3,8 @@ package espl.employeeSafety.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -21,10 +23,9 @@ import espl.employeeSafety.Service.DesignationService;
 public class DesignationController {
 	@Autowired
 	private DesignationService designationService;
-	@PreAuthorize("hasAnyRole('ADMIN')")
-	@RequestMapping(value="/get",method=RequestMethod.GET)
-	public ResponseEntity<List<Designation>> getAllDesignations(){
-		return new ResponseEntity<List<Designation>>(designationService.getAllDesignations(),HttpStatus.OK);
+	@RequestMapping(method=RequestMethod.GET)
+	public ResponseEntity<Page<Designation>> getAllDesignations(Pageable pageable){
+		return new ResponseEntity<Page<Designation>>(designationService.getAllDesignations(pageable),HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)

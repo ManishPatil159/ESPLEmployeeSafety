@@ -3,6 +3,8 @@ package espl.employeeSafety.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +24,8 @@ public class ProjectController {
 	private ProjectService projectService;
 
 	@RequestMapping(method=RequestMethod.GET)
-	public ResponseEntity<List<Project>> getAllProjects(){
-		return new ResponseEntity<List<Project>>(projectService.getAllProjects(),HttpStatus.OK);
+	public ResponseEntity<Page<Project>> getAllProjects(Pageable pageable){
+		return new ResponseEntity<Page<Project>>(projectService.getAllProjects(pageable),HttpStatus.OK);
 	}
 
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)

@@ -3,6 +3,8 @@ package espl.employeeSafety.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +24,8 @@ public class EmployeeController {
 	private EmployeeService employeeService;
 
 	@RequestMapping(method=RequestMethod.GET)
-	public ResponseEntity<List<Employee>> getAllEmployees(){
-		return new ResponseEntity<List<Employee>>(employeeService.getAllEmployees(),HttpStatus.OK);
+	public ResponseEntity<Page<Employee>> getAllEmployees(Pageable pageable){
+		return new ResponseEntity<Page<Employee>>(employeeService.getAllEmployees(pageable),HttpStatus.OK);
 	}
 
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)

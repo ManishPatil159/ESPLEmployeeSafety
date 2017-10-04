@@ -2,6 +2,8 @@ package espl.employeeSafety.Service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import espl.employeeSafety.Entity.Designation;
@@ -16,8 +18,8 @@ public class DesignationServiceImpl implements DesignationService{
 	 * @see espl.employeeSafety.Service.DesignationService#getAllDesignations()
 	 */
 	@Override
-	public List<Designation> getAllDesignations(){
-		return DesignationRepository.findAll();
+	public Page<Designation> getAllDesignations(Pageable pageable){
+		return DesignationRepository.findAll(pageable);
 	}
 
 	/* (non-Javadoc)

@@ -12,13 +12,13 @@ public class Designation {
 	}
 	
 	public Designation(int id, String name) {
-		Name = name;
+		name = name;
 	}
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	private String Name;
+	private String name;
 	
 	public int getId() {
 		return id;
@@ -29,11 +29,11 @@ public class Designation {
 	}
 
 	public String getName() {
-		return Name;
+		return name;
 	}
 
 	public void setName(String name) {
-		Name = name;
+		name = name;
 	}
 	
 	
