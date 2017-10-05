@@ -8,12 +8,14 @@ import org.springframework.stereotype.Service;
 
 import espl.employeeSafety.Entity.Employee;
 import espl.employeeSafety.Repository.EmployeeRepository;
+//import espl.employeeSafety.Repository.EmployeeRepositoryCustom;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 	@Autowired
 	private EmployeeRepository employeeRepository;
-
+	/*@Autowired
+	private EmployeeRepositoryCustom empCustom;*/
 	
 	/* (non-Javadoc)
 	 * @see espl.employeeSafety.Service.EmployeeService#getAllEmployees()
@@ -22,6 +24,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public Page<Employee> getAllEmployees(Pageable pageable){
 		return employeeRepository.findAll(pageable);
 	}
+	
+	public List<Employee> searchWithJPQLQuery(String searchTerm){
+		return employeeRepository.searchWithJPQLQuery(searchTerm);
+	}
+	/*public List<Employee> findByfirstNameContainsOrlastNameContainsAllIgnoreCase(String firstName, String lastName){
+		return empCustom.findByfirstNameContainsOrlastNameContainsAllIgnoreCase(firstName,lastName);
+	}*/
 
 	/* (non-Javadoc)
 	 * @see espl.employeeSafety.Service.EmployeeService#getEmployeeById(int)

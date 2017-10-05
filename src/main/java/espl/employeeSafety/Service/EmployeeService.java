@@ -34,4 +34,7 @@ public interface EmployeeService {
 	 */
 	public abstract void deleteEmployee(int id);
 
+	public abstract List<Employee> searchWithJPQLQuery(String searchTerm);
+	//public abstract List<Employee> findByfirstNameContainsOrlastNameContainsAllIgnoreCase(String firstName, String lastName);
+
 }

@@ -32,6 +32,15 @@ public class EmployeeController {
 	public ResponseEntity<Employee> getEmployeeById(@PathVariable("id") int id) {
 		return new ResponseEntity<Employee>(employeeService.getEmployeeById(id), HttpStatus.OK);
 	}
+	
+	@RequestMapping( value="/search", method=RequestMethod.GET)
+	public ResponseEntity<List<Employee>> getEmployeeById(String searchTerm) {
+		return new ResponseEntity<List<Employee>>(employeeService.searchWithJPQLQuery(searchTerm), HttpStatus.OK);
+	}
+	/*@RequestMapping( value="/search", method=RequestMethod.GET)
+	public ResponseEntity<List<Employee>> getEmployeeById(String searchTerm) {
+		return new ResponseEntity<List<Employee>>(employeeService.searchWithJPQLQuery(searchTerm), HttpStatus.OK);
+	}*/
 
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<Void> deleteEmployee(@PathVariable("id") int id) {

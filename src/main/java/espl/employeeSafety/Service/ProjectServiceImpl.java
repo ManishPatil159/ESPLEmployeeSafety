@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import espl.employeeSafety.Entity.Employee;
 import espl.employeeSafety.Entity.Project;
 import espl.employeeSafety.Repository.ProjectRepository;
 
@@ -21,7 +22,10 @@ public class ProjectServiceImpl implements ProjectService {
 	public Page<Project> getAllProjects(Pageable pageable){
 		return projectRepository.findAll(pageable);
 	}
-
+	
+	public List<Project> searchProjectName(String searchTerm){
+		return projectRepository.searchProjectName(searchTerm);
+	}
 	/* (non-Javadoc)
 	 * @see espl.employeeSafety.Service.ProjectService#getProjectById(int)
 	 */

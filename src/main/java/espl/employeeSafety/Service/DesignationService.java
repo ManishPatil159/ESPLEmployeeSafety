@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import espl.employeeSafety.Entity.Designation;
+import espl.employeeSafety.Entity.Project;
 
 public interface DesignationService {
 
@@ -34,5 +35,7 @@ public interface DesignationService {
 	 * @see espl.employeeSafety.Service.DesignationService#deleteDesignation(int)
 	 */
 	public abstract void deleteDesignation(int id);
+	
+	public abstract List<Designation> searchDesignationName(String searchTerm);
 
 }

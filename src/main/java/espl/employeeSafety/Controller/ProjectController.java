@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import espl.employeeSafety.Entity.Employee;
 import espl.employeeSafety.Entity.Project;
 import espl.employeeSafety.Service.ProjectService;
 
@@ -32,7 +33,12 @@ public class ProjectController {
 	public ResponseEntity<Project> getProjectById(@PathVariable("id") int id) {
 		return new ResponseEntity<Project>(projectService.getProjectById(id), HttpStatus.OK);
 	}
-
+	
+	@RequestMapping( value="/search", method=RequestMethod.GET)
+	public ResponseEntity<List<Project>> getEmployeeById(String searchTerm) {
+		return new ResponseEntity<List<Project>>(projectService.searchProjectName(searchTerm), HttpStatus.OK);
+	}
+	
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<Void> deleteProject(@PathVariable("id") int id) {
 		projectService.deleteProject(id);

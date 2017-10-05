@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import espl.employeeSafety.Entity.Designation;
+import espl.employeeSafety.Entity.Project;
 import espl.employeeSafety.Service.DesignationService;
 
 @RestController
@@ -31,6 +32,11 @@ public class DesignationController {
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<Designation> getDesignationById(@PathVariable("id") int id) {
 		return new ResponseEntity<Designation>(designationService.getDesignationById(id), HttpStatus.OK);
+	}
+	
+	@RequestMapping( value="/search", method=RequestMethod.GET)
+	public ResponseEntity<List<Designation>> getEmployeeById(String searchTerm) {
+		return new ResponseEntity<List<Designation>>(designationService.searchDesignationName(searchTerm), HttpStatus.OK);
 	}
 
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)

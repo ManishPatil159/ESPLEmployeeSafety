@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import espl.employeeSafety.Entity.Employee;
 import espl.employeeSafety.Entity.Project;
 
 public interface ProjectService {
@@ -18,7 +19,7 @@ public interface ProjectService {
 	Project updateProject(int id, Project project);
 
 	void deleteProject(int id);
-
-	//Page<Project> getAllProjects(Pageable pageable);
+	
+	public abstract List<Project> searchProjectName(String searchTerm);
 
 }

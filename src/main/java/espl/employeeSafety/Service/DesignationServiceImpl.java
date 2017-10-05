@@ -7,19 +7,24 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import espl.employeeSafety.Entity.Designation;
+import espl.employeeSafety.Entity.Project;
 import espl.employeeSafety.Repository.DesignationRepository;
 
 @Service
 public class DesignationServiceImpl implements DesignationService{
 	@Autowired
-	private DesignationRepository DesignationRepository;
+	private DesignationRepository designationRepository;
 
 	/* (non-Javadoc)
 	 * @see espl.employeeSafety.Service.DesignationService#getAllDesignations()
 	 */
 	@Override
 	public Page<Designation> getAllDesignations(Pageable pageable){
-		return DesignationRepository.findAll(pageable);
+		return designationRepository.findAll(pageable);
+	}
+	
+	public List<Designation> searchDesignationName(String searchTerm){
+		return designationRepository.searchDesignationName(searchTerm);
 	}
 
 	/* (non-Javadoc)
@@ -28,7 +33,7 @@ public class DesignationServiceImpl implements DesignationService{
 	
 	@Override
 	public Designation getDesignationById(int id) {
-		return DesignationRepository.findOne(id);
+		return designationRepository.findOne(id);
 	}
 
 	/* (non-Javadoc)
@@ -37,7 +42,7 @@ public class DesignationServiceImpl implements DesignationService{
 	
 	@Override
 	public Designation addDesignation(Designation Designation) {
-		return DesignationRepository.save(Designation);
+		return designationRepository.save(Designation);
 	}
 
 	/* (non-Javadoc)
@@ -49,7 +54,7 @@ public class DesignationServiceImpl implements DesignationService{
 		Designation repoDesignation=getDesignationById(id);
 		if(repoDesignation!=null) {
 			repoDesignation.setName(Designation.getName());
-			return DesignationRepository.save(repoDesignation);	
+			return designationRepository.save(repoDesignation);	
 		}
 		return null;
 	}
@@ -60,6 +65,6 @@ public class DesignationServiceImpl implements DesignationService{
 	
 	@Override
 	public void deleteDesignation(int id) {
-		DesignationRepository.delete(id);
+		designationRepository.delete(id);
 	}
 }
