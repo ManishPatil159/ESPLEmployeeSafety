@@ -15,7 +15,7 @@ apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 
 group = 'ESPL.EmployeeSafety'
-version = '0.0.1-SNAPSHOT'
+version = '2.0.0-SNAPSHOT'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
@@ -28,8 +28,10 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-starter-security')
+	compile("org.springframework.hateoas:spring-hateoas:0.23.0.RELEASE")
 	compile("org.springframework.security:spring-security-jwt:1.0.2.RELEASE")
 	compile("org.springframework.mobile:spring-mobile-device:1.1.0.RELEASE")
+	 compile("com.googlecode.json-simple:json-simple:1.1.1")
 	compile("org.springframework.boot:spring-boot-devtools")
 	compile('io.jsonwebtoken:jjwt:0.6.0')
 	runtime('mysql:mysql-connector-java')

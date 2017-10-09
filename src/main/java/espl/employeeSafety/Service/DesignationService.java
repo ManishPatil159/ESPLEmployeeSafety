@@ -1,5 +1,6 @@
 package espl.employeeSafety.Service;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -37,5 +38,7 @@ public interface DesignationService {
 	public abstract void deleteDesignation(int id);
 	
 	public abstract List<Designation> searchDesignationName(String searchTerm);
+
+	//public abstract Collection<Designation> getAllDesignations(Pageable pageable);
 
 }

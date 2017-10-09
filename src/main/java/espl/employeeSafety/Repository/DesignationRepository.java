@@ -2,6 +2,8 @@ package espl.employeeSafety.Repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -14,4 +16,5 @@ public interface DesignationRepository extends JpaRepository<Designation, Intege
 	@Query(value = "SELECT t FROM Designation t WHERE " +
             "LOWER(t.name) LIKE LOWER(CONCAT('%',:searchTerm, '%'))")
 	public List<Designation> searchDesignationName(@Param("searchTerm") String searchTerm);
+	
 }

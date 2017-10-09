@@ -1,8 +1,15 @@
 package espl.employeeSafety.Controller;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.PagedResources;
+import org.springframework.hateoas.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import espl.employeeSafety.Entity.Gender;
@@ -21,9 +29,30 @@ public class GenderController {
 	@Autowired
 	private GenderService genderService;
 
-	@RequestMapping(method=RequestMethod.GET)
+	/*@RequestMapping(method=RequestMethod.GET)
 	public ResponseEntity<List<Gender>> getAllGenders(){
 		return new ResponseEntity<List<Gender>>(genderService.getAllGenders(),HttpStatus.OK);
+	}*/
+	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<Resource<Gender>>> getAllGenders() {
+
+		Collection<Gender> genders = genderService.getAllGenders();
+		List<Resource<Gender>> resources = new ArrayList<Resource<Gender>>();
+		for (Gender gender : genders) {
+			resources.add(getAllGenders(gender));
+		}
+		return new ResponseEntity<>( resources,HttpStatus.OK);
+
+	}
+	private Resource<Gender> getAllGenders(Gender gender) {
+
+		Resource<Gender> resource = new Resource<Gender>(gender);
+
+		resource.add(linkTo(methodOn(GenderController.class).getGenderById(gender.getId())).withSelfRel());
+		
+		return resource;
+
 	}
 
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)

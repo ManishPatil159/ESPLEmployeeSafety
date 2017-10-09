@@ -1,4 +1,5 @@
 package espl.employeeSafety.Service;
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,9 @@ public class DesignationServiceImpl implements DesignationService{
 	public Page<Designation> getAllDesignations(Pageable pageable){
 		return designationRepository.findAll(pageable);
 	}
+	/*public Collection<Designation> getAllDesignations(){
+		return designationRepository.findAll();
+	}*/
 	
 	public List<Designation> searchDesignationName(String searchTerm){
 		return designationRepository.searchDesignationName(searchTerm);
